@@ -7,7 +7,7 @@ int main(int argc, char** argv){
     double start, finish, time;
     FILE *fp;
 
-    fp = fopen("./test.txt","a");
+    fp = fopen("./test.csv","a");
 
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &nproc);
@@ -25,7 +25,7 @@ int main(int argc, char** argv){
         printf("Error!");               
     }
     else{
-        fprintf(fp,"%lf;",time);
+        fprintf(fp,"%lf\n",time);
         fclose(fp);
     }
 
