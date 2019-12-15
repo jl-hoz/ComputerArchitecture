@@ -18,6 +18,7 @@ int main(int argc, char **argv){
     std::cout << "Introduzca un numero entero: ";
     std::cin >> read;
     printf("\nParent process with rank %d send %d\n", rank, read);
+
     MPI_Send(&read, 1, MPI_INT, 1, 100, MPI_COMM_WORLD);
   }
   // Son receive data and send it to another son.
@@ -34,6 +35,9 @@ int main(int argc, char **argv){
     if (rank < nproc - 1){
       MPI_Send(&data, 1, MPI_INT, (rank + 1), 100, MPI_COMM_WORLD);
       printf("Process with rank %d send %d\n", rank, data);
+    }else{ // Last process send data to first process
+      MPI_Send(&data, 1, MPI_INT, 0, 100, MPI_COMM_WORLD);
+      printf("Last Process with rank %d send %d\n", rank, data);
     }
   }
 
