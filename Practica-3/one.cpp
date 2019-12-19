@@ -39,6 +39,7 @@ int main(int argc, char *argv[]){
       cuadrado = value * value; 
     }
     MPI_Bcast(&cuadrado, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    printf("Proceso padre ha enviado %d a todos los procesos hijo!\n\n", cuadrado);
     if(rank != 0){
       printf("Proceso %d ha recibido el resultado %d\n", rank, cuadrado);
     }
